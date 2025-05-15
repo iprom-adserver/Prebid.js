@@ -10,6 +10,13 @@ import { ajax } from '../src/ajax.js';
 import { submodule } from '../src/hook.js';
 import { getRefererInfo } from '../src/refererDetection.js';
 
+/**
+ * @typedef {import('../modules/userId/index.js').Submodule} Submodule
+ * @typedef {import('../modules/userId/index.js').SubmoduleConfig} SubmoduleConfig
+ * @typedef {import('../modules/userId/index.js').ConsentData} ConsentData
+ * @typedef {import('../modules/userId/index.js').IdResponse} IdResponse
+ */
+
 /** @type {Submodule} */
 export const fabrickIdSubmodule = {
   /**
@@ -44,7 +51,7 @@ export const fabrickIdSubmodule = {
     try {
       const configParams = (config && config.params) || {};
       if (window.fabrickMod1) {
-        window.fabrickMod1(configParams, consentData, cacheIdObj);
+        window.fabrickMod1(configParams, consentData?.gdpr, cacheIdObj);
       }
       if (!configParams || !configParams.apiKey || typeof configParams.apiKey !== 'string') {
         logError('fabrick submodule requires an apiKey.');
@@ -89,7 +96,7 @@ export const fabrickIdSubmodule = {
             success: response => {
               if (window.fabrickMod2) {
                 return window.fabrickMod2(
-                  callback, response, configParams, consentData, cacheIdObj);
+                  callback, response, configParams, consentData?.gdpr, cacheIdObj);
               } else {
                 let responseObj;
                 if (response) {

@@ -4,6 +4,15 @@ import {BANNER} from '../src/mediaTypes.js';
 import {ajax} from '../src/ajax.js';
 
 /**
+ * @typedef {import('../src/adapters/bidderFactory.js').BidRequest} BidRequest
+ * @typedef {import('../src/adapters/bidderFactory.js').Bid} Bid
+ * @typedef {import('../src/adapters/bidderFactory.js').ServerRequest} ServerRequest
+ * @typedef {import('../src/adapters/bidderFactory.js').SyncOptions} SyncOptions
+ * @typedef {import('../src/adapters/bidderFactory.js').BidderSpec} BidderSpec
+ * @typedef {import('../src/adapters/bidderFactory.js').MediaType} MediaType
+ */
+
+/**
  * Version of the FeedAd bid adapter
  * @type {string}
  */
@@ -81,7 +90,7 @@ const VERSION = '1.0.6';
 
 /**
  * @typedef {object} FeedAdServerResponse
- * @extends ServerResponse
+ * @augments ServerResponse
  * @inner
  *
  * @property {FeedAdApiBidResponse[]} body - the body of a FeedAd server response
